@@ -3,13 +3,6 @@ require 'dalli'
 require 'uri'
 require 'rest_client'
 
-def show_koda(template, locals={})
-  content_type :html
-  options = {:layout => false}.merge(settings.view_options)
-  template = template_for "koda/views/#{template}.#{settings.view_format}"
-  render(settings.view_format, template, options, locals)
-end
-
 def show_system(template, locals={})
   content_type :html
   options = {:layout => false}.merge(settings.view_options)
@@ -23,12 +16,12 @@ def show(template, locals={})
   
   @content = get_from_cache
   
-  template = template_for "views/#{template}.#{settings.view_format}"
+  template = template_for "templates/#{template}.#{settings.view_format}"
   render(settings.view_format, template, settings.view_options, locals)
 end
 
 def render_partial(template, locals={})
-  template = template_for "views/#{template}.#{settings.view_format}"
+  template = template_for "templates/#{template}.#{settings.view_format}"
   options = {:layout => false}.merge(settings.view_options)
 
   @content = get_from_cache

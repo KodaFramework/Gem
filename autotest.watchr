@@ -1,7 +1,7 @@
 def run_all_tests
   print 'clear'
   puts "Tests run #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}"
-  result_text = `rspec spec`
+  result_text = `rake spec`
   result = result_text.include? '0 failures'
   if not result
     `growlnotify --image spec/fail.jpeg -m 'Unit Tests Failed' Rspec`

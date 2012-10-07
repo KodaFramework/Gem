@@ -596,7 +596,7 @@ qq.FileUploader = function(o){
             '</li>',
 
         classes: {
-            // used to get elements from templates
+            // used to get elements from views
             button: 'qq-upload-button',
             drop: 'qq-upload-drop-area',
             dropActive: 'qq-upload-drop-area-active',

@@ -9,13 +9,12 @@ http://www.kodacms.org/
 
 ## Features
 
-*	DropBox-like interface for managing your content
-*	'Terminal' 'CLI'-like interface for quick browsing through your data.
-*	Full RESTful API to your data (great for providing content to mobile apps, single page js apps etc)
+*	Create and manage content in your own preferred structure. You can be as conservative or creative as you wish.
+*   Consume the content in one of our pre-built starter-kits or use the REST api to display your content on mobiles, single page js apps, flash, silverlight etc.
 *	Platform independent
 *	Incredibly fast
 *	Almost no learning curve
-*	Out of box Heroku with MongoLab support (FREE 500mb MongoDb instance and hosting. You only pay if your site becomes big)
+*	Supports [Heroku](http://www.heroku.com/) FREE 500mb MongoDb instance and hosting that scales
 *	Always free! Open source MIT Licence
 
 ## Screenshot
@@ -23,15 +22,33 @@ http://www.kodacms.org/
 ## Explorer
 ![Content Editing](https://raw.github.com/KodaCMS/Koda/master/screenshots/adding-content.png)
 
-## Where are we now?
+## Roadmap
 
-In the pipeline
+*	Publishing Workflow
+*   Preview
 
-*	Publishing Workflow and Preview
+### Getting started with a starter-kit
 
-ETA - October / November 2012
+* Clone any starter kit
+* Sign up at [Heroku](http://www.heroku.com/)
+* Install the [heroku toolbelt](https://toolbelt.heroku.com/)
+* From within the folder where you cloned the repo
+    -   `heroku apps:create myapp`
+    -   `heroku config:add ENABLE_CACHE=true`
+    -   `heroku config:add ENVIRONMENT=production`
+    -   `heroku addons:add mongolab:starter`
+    -   `heroku addons:add memcache:5mb`
+    -   `git push heroku master`
+* Restore the starter kit database
+    -   Login to your account on the [Heroku](http://www.heroku.com/) website, click on your app.
+    -   Select the Mongolab-starter add-on
+    -   Add a new user in the users tab and remember the username and password you created.
+    -   At the top find your Mongo URI and note down the hostname, port and database
+        This will be in the format (mongodb://<dbuser>:<dbpassword>@<hostname>.mongolab.com:<port>/<database>)
+    -   From within your local folder type `heroku run console` to enter the console
+    -   Perform the restore `mongorestore -h <hostname>.mongolab.com:<port> -d <database> -u <the_username_you_created> -p <the_password_you_created> data/kodacms`
 
-### Getting started
+### Getting started with modifying or building a starter-kit
 
 Follow the guide here to install mongodb on your preferred platform
 http://www.mongodb.org/display/DOCS/Quickstart
@@ -140,9 +157,6 @@ produces...
    </div>
 ```
 
-> The default view-engine is [Embedded Ruby](http://en.wikipedia.org/wiki/ERuby), but you can configure your own [from these choices](http://sinatra-book.gittr.com/#templates)!
-> But we also provide a very versatile, yet simple client API to use in your views
-
 ## Available content filters from within a view
 
 ### Where
@@ -156,31 +170,10 @@ produces...
 
 ### Routes
 
-Your routes live in the config.ru file.
+A starter-kit will have the routes defined in the config.ru file.
+You can modify these, but be careful as it might break the pretty urls and paths
 
-```ruby
-get '/:page?' do
-  @current_page = params[:page]
-  @title = "Welcome to KodaCMS"
-  show :myview
-end
-```
-
-this will respond to, eg. '/about_us', '/contact_us'
-and means you can show the correct info based on the context
-
-```html
-<% page = model.pages.by_ref @current_page %>
-	<% safe('No Content has been added yet'){%>
-    <h2><%=page.title%></h2>
-    <div>
-      <%=page.intro_paragraph%>
-    </div>
-	<%}%>
-<% end%>
-```
-
-this is a very simple example, but the possibilities when you can define your own routes...
+this is a very simple example of a route...
 
 ```ruby
 get '/blog/:author/:post/:?' do
@@ -190,6 +183,8 @@ get '/blog/:author/:post/:?' do
   show :myview
 end
 ```
+
+variables prefixed with the '@' sign will be available to your views.
 
 and do...
 
@@ -264,22 +259,6 @@ A new type will appear under the "User Created" section on the right.
 ```
 
 [KodaTypes supports most HTML5 input types and validation](http://www.the-art-of-web.com/html/html5-form-validation/)
-
-### Deploying Koda to Heroku
-
-We know that deploying CMS's to production can be a tedious process...
-so to deploy koda to production just do...
-
-after installing the koda gem and choosing your starter-kit
-
-```ruby
-heroku apps:create myapp
-heroku config:add ENABLE_CACHE=true
-heroku config:add ENVIRONMENT=production
-heroku addons:add mongolab:starter
-heroku addons:add memcache:5mb
-git push heroku master
-```
 
 ### Backup / Restore one koda instance to another
 

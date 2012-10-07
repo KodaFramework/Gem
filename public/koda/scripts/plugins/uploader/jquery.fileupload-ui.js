@@ -17,7 +17,7 @@
     
     // The UI version extends the basic fileupload widget and adds
     // a complete user interface based on the given upload/download
-    // templates.
+    // views.
     $.widget('blueimpUI.fileupload', $.blueimp.fileupload, {
         
         options: {
@@ -585,7 +585,7 @@
         },
 
         _initTemplates: function () {
-            // Handle cases where the templates are defined
+            // Handle cases where the views are defined
             // after the widget library has been included:
             if (this.options.uploadTemplate instanceof $ &&
                     !this.options.uploadTemplate.length) {
