@@ -306,8 +306,8 @@ Or use a timestamp
 
 ### Collections
 
-> collection
-> collection-multi
+* collection
+* collection-multi
 
 #### Usage
 
