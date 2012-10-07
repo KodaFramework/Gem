@@ -361,12 +361,12 @@ Loading from AJAX
 Most people want to 'set-up' or create their site on their local machine first and then migrate the content over to production
 This couldn't be simpler with koda...
 
-> Set up your data and run the following command on your local machine when done...
+Set up your data and run the following command on your local machine when done...
 `ruby data.rb dump data/`
-> Commit your files or zip them up and place them on production and run the following
+Commit your files or zip them up and place them on production and run the following
 `ruby data.rb restore data/kodacms`
 
-This will backup /restore all your data and media to file.
+> This will backup /restore all your data and media to file.
 
 ### Backup / Restore on Heroku (or other shared hosting)
 
@@ -395,7 +395,7 @@ Return from maintenance mode.
 
 ------------------
 
-# Koka RESTful API Reference (for talking directly to the api from a mobile, single page js app etc.)
+# Koka Content API Reference
 
 ------------------
 
@@ -531,6 +531,6 @@ DELETE '/api/trucks/smallblueone'
 
 # Any Questions?
 
-KodaCMS on Twitter: @kodacms
-Marcel du Preez on Twitter: @marceldupreez
+>KodaCMS on Twitter: @kodacms
+>Marcel du Preez on Twitter: @marceldupreez
 
