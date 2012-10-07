@@ -259,6 +259,16 @@ A new type will appear under the "User Created" section on the right.
 	]
 ```
 
+### Default value Accessors
+
+You can reference any other property in a default value
+
+`"defaultValue" : "<%=property_name%>"`
+
+Or use a timestamp
+
+`"defaultValue" : "<%=timestamp%>"`
+
 [KodaTypes supports most HTML5 input types and validation](http://www.the-art-of-web.com/html/html5-form-validation/)
 
 ## Data Types
