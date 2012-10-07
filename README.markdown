@@ -20,7 +20,9 @@ http://www.kodaframework.org/
 ## Explorer
 ![Content Editing](https://raw.github.com/KodaFramework/Gem/master/screenshots/adding-content.png)
 
-### Getting started with a starter-kit
+---------------
+# Getting started with a starter-kit
+---------------
 
 * Clone any starter kit
 * Sign up at [Heroku](http://www.heroku.com/)
@@ -41,7 +43,9 @@ http://www.kodaframework.org/
     -   From within your local folder type `heroku run console` to enter the console
     -   Perform the restore `mongorestore -h <hostname>.mongolab.com:<port> -d <database> -u <the_username_you_created> -p <the_password_you_created> data/koda`
 
-### Getting started with modifying or building a starter-kit
+-------------------
+# Getting started with modifying or building a starter-kit
+-------------------
 
 Follow the guide here to install mongodb on your preferred platform
 http://www.mongodb.org/display/DOCS/Quickstart
