@@ -63,6 +63,8 @@
 > richtext
 > kodalinkeditor
 > truefalse
+> collection
+> collection-multi
 
 ### Collections
 

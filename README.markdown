@@ -44,7 +44,7 @@ http://www.kodacms.org/
     -   Select the Mongolab-starter add-on
     -   Add a new user in the users tab and remember the username and password you created.
     -   At the top find your Mongo URI and note down the hostname, port and database
-        This will be in the format (mongodb://<dbuser>:<dbpassword>@<hostname>.mongolab.com:<port>/<database>)
+        This will be in the format (`mongodb://<dbuser>:<dbpassword>@<hostname>.mongolab.com:<port>/<database>`)
     -   From within your local folder type `heroku run console` to enter the console
     -   Perform the restore `mongorestore -h <hostname>.mongolab.com:<port> -d <database> -u <the_username_you_created> -p <the_password_you_created> data/kodacms`
 
@@ -71,11 +71,11 @@ Once you have this installed, simply...
 *	Go to `http://localhost:3000/explorer` to register and start editing content
 *	Go to `http://localhost:3000/console` after registration to browse your data
 
-## Creating Layouts and Views
+## Creating Layouts and Templates
 
 ### Layouts
 
-> /views/layout.rb
+> /templates/layout.rb
 ```html
 <html>
   <body>
@@ -84,11 +84,11 @@ Once you have this installed, simply...
 </html>
 ```
 
-### Views
+### Templates
 
-Views will automatically be rendered inside the layout
+Templates will automatically be rendered inside the layout
 
-> /views/myview.rb
+> /templates/mytemplate.rb
 ```html
 <h3>Hello World!</h3>
 ```
@@ -105,12 +105,12 @@ produces...
 
 ### Partials
 
-> /views/partials/mypartial.rb
+> /templates/partials/mypartial.rb
 ```html
 <p>my partial</p>
 ```
 
-> /views/myview.rb
+> /templates/mytemplate.rb
 ```html
 <h3>Hello World!</h3>
 <% render_partial 'partials/mypartial' %>
@@ -127,7 +127,7 @@ produces...
 </html>
 ```
 
-### Using Content inside Views
+### Using Content inside Templates
 
 ```html
 <% model.blogposts.all.each do |blogpost|%>
@@ -157,7 +157,7 @@ produces...
    </div>
 ```
 
-## Available content filters from within a view
+## Available content filters from within a template
 
 ### Where
 `model.[collection].where {|item| item.someProp == 'something' && item.alias != nil } ` returns all items that match
@@ -180,11 +180,11 @@ get '/blog/:author/:post/:?' do
   @author = params[:author]
   @post = params[:post]
   @title = "Welcome to KodaCMS"
-  show :myview
+  show :mytemplate
 end
 ```
 
-variables prefixed with the '@' sign will be available to your views.
+variables prefixed with the '@' sign will be available to your templates.
 
 and do...
 
@@ -201,30 +201,31 @@ and do...
 
 ### Creating Koda Types
 
-To Create Koda types place a new javascript file in the `/public/koda/koda-types` folder
+To Create Koda types place a new json file in the `/public/koda/koda-types` folder
 
-Register your type in the `/public/koda/koda-types/type_registration.js` file and you can now use it in the Koda Explorer!
+Register your type in the `/public/koda/koda-types/type_registration.json` file and you can now use it in the Koda Explorer!
 A new type will appear under the "User Created" section on the right.
 
 
-```javascript
+```json
 {
-	"title"  : "Kodacms.org Editor",
+	"title"  : "Generic Text Editor",
 	"fields" : [
 		{
 			"id" : "_koda_type",
-			"control" : "input-hidden",
-			"defaultValue" : "/koda/koda-types/custom-blogpost.js"
+			"defaultValue" : "/koda/koda-types/koda-generictext.json"
 		},
 		{
 			"id" : "_koda_editor",
-			"control" : "input-hidden",
 			"defaultValue" : "/koda/koda-editors/generic-editor.html"
 		},
 		{
 			"id" : "_koda_indexes",
-			"control" : "input-hidden",
 			"defaultValue" : "name,tags"
+		},
+		{
+			"id" : "datecreated",
+			"defaultValue" : "<%=timestamp%>"
 		},
 		{
 			"id" : "name",
@@ -241,12 +242,13 @@ A new type will appear under the "User Created" section on the right.
 			"control" : "input-readonly",
 			"defaultValue" : ""
 		},
-/*
-	ALL Fields above are required for use with the generic editors.
-	You can specify your own rules if you use your own editor.
-
-	Add your custom variables below this comment... for example...
-*/
+		{
+			"id" : "content",
+			"title" : "Content",
+			"description" : "The contents",
+			"control" : "richtext",
+			"defaultValue" : ""
+		},
 		{
 			"id" : "tags",
 			"title" : "Tags",
@@ -255,12 +257,95 @@ A new type will appear under the "User Created" section on the right.
 			"defaultValue" : ""
 		}
 	]
-}
 ```
 
 [KodaTypes supports most HTML5 input types and validation](http://www.the-art-of-web.com/html/html5-form-validation/)
 
-### Backup / Restore one koda instance to another
+## Data Types
+
+### Available data types
+
+> input-hidden
+> input-color
+> input-date
+> input-text
+> input-password
+> input-email
+> input-url
+> input-number
+> input-range
+> input-readonly
+> imageupload
+> mediaupload
+> textarea
+> richtext
+> truefalse
+
+#### Usage
+
+```json
+{
+	"id" : "name",
+	"title" : "Title",
+	"description" : "Title of page",
+	"control" : "input-text",
+	"properties" : "required  placeholder='type a page title'",
+	"defaultValue" : ""
+}
+```
+
+### Collections
+
+> collection
+> collection-multi
+
+#### Usage
+
+```javascript
+{
+	"id" : "homepage",
+	"title" : "Select homepage",
+	"description" : "Select the homepage",
+	"control" : "collection",
+	"defaultValue" : "",
+	"values" : "value1,value2,value3,value4"
+}
+
+###  Loading data into controls from Ajax (lists)
+
+```json
+{
+	"id" : "homepage",
+	"title" : "Select homepage",
+	"description" : "Select the homepage",
+	"control" : "collection",
+	"defaultValue" : "",
+	"ajax" : {
+		"url" : "/content/mycollection",
+		"displayfield" : "title",
+		"valuefield" : "href"
+	}
+}
+```
+
+###  Loading data into controls from Ajax (single values)
+
+```json
+{
+	"id" : "name",
+	"title" : "Title",
+	"description" : "Title of page",
+	"control" : "input-text",
+	"properties" : "required  placeholder='type a page title'",
+	"defaultValue" : "",
+	"ajax" : {
+		"url" : "/content/pages/pageone",
+		"displayfield" : "title"
+	}
+}
+```
+
+# Backup / Restore one koda instance to another
 
 Most people want to 'set-up' or create their site on their local machine first and then migrate the content over to production
 This couldn't be simpler with koda...
