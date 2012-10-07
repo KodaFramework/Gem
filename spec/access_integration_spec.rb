@@ -5,7 +5,7 @@ require_relative '../lib/koda'
 
 set :environment, :test
 
-describe 'Mongo KodaCMS access integration' do
+describe 'Mongo Koda access integration' do
   include Rack::Test::Methods
   
   def clear_database database
@@ -19,14 +19,14 @@ describe 'Mongo KodaCMS access integration' do
   end
   
   before(:each) do
-    database = Mongo::Connection.new('localhost',27017).db('kodacms_test')
+    database = Mongo::Connection.new('localhost',27017).db('koda_test')
     clear_database database
   end
   
   before do
     MongoConfig.instance_eval do     
        def GetMongoDatabase 
-         Mongo::Connection.new('localhost',27017).db('kodacms_test')
+         Mongo::Connection.new('localhost',27017).db('koda_test')
        end
      end
     UserContext.instance_eval do

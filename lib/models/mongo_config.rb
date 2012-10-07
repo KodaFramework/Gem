@@ -8,7 +8,7 @@ class MongoConfig
   end
 
   def self.GetMongoDatabase 
-    config = {:server => "localhost",:db => "kodacms"}
+    config = {:server => "localhost",:db => "koda"}
 
     if ENV['MONGOLAB_URI']
   	  uri = URI.parse(ENV['MONGOLAB_URI'])

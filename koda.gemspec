@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Marcel du Prez", "Derek Ekins"]
   s.email       = ["marceldupr@gmail.com", "derek@spathi.com"]
-  s.homepage    = "https://github.com/KodaCMS/Koda"
-  s.summary     = "Content Management done right"
-  s.description = "KodaCMS is unlike any other CMS you might have come across. It manages your content first, thinking about where it will be used later. Create content in the Back-Office and present it on web page, mobile, tablet, flash, silverlight you name it!"
+  s.homepage    = "https://github.com/KodaFramework"
+  s.summary     = "The Koda Framework - the only toolkit you will need to build websites, mobile apps and many more"
+  s.description = "The Koda Framework allows you to create websites, iphone apps, android apps or single page js apps apps and manages your data with a very simple, yet versatile and configurable admin section."
 
   s.required_rubygems_version = ">= 1.3.6"
 
@@ -26,10 +26,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'dalli'
   s.add_dependency 'rest-client'
 
-  s.add_development_dependency'rspec', '>= 2.8'
-  s.add_development_dependency'rack-test'
-  s.add_development_dependency'shotgun'
-  s.add_development_dependency'watchr'
+  s.add_development_dependency 'rspec', '>= 2.8'
+  s.add_development_dependency 'rack-test'
+  s.add_development_dependency 'shotgun'
+  s.add_development_dependency 'watchr'
 
   s.files        = Dir.glob("{public/**/*,lib}/**/*")
   #s.executables  = ['bundle']
