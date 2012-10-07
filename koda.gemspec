@@ -6,7 +6,7 @@ require 'bundler/version'
 
 Gem::Specification.new do |s|
   s.name        = "koda"
-  s.version     = "0.0.11"
+  s.version     = "0.0.12"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Marcel du Prez", "Derek Ekins"]
   s.email       = ["marceldupr@gmail.com", "derek@spathi.com"]
