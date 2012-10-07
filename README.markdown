@@ -275,21 +275,21 @@ Or use a timestamp
 
 ### Available data types
 
-> input-hidden
-> input-color
-> input-date
-> input-text
-> input-password
-> input-email
-> input-url
-> input-number
-> input-range
-> input-readonly
-> imageupload
-> mediaupload
-> textarea
-> richtext
-> truefalse
+* input-hidden
+* input-color
+* input-date
+* input-text
+* input-password
+* input-email
+* input-url
+* input-number
+* input-range
+* input-readonly
+* imageupload
+* mediaupload
+* textarea
+* richtext
+* truefalse
 
 #### Usage
 
