@@ -374,24 +374,21 @@ Take your application into maintenance mode.
 
 Please note: You will need your current `MONGOLAB_URI` (from your Heroku configs) available before you begin as the following steps will alter it permanently.
 
-`$ heroku maintenance:on`
-Run a mongodump of your current database.
+*   `$ heroku maintenance:on`
+    > Run a mongodump of your current database.
 
-`$ mongodump -h hostname.mongohq.com:port_number -d database_name -u username -p password -o /path/on/my/local/computer`
-Deprovision the old database for this app, making sure that the mongodump in Step #2 completed successfully.
+*  `$ mongodump -h hostname.mongohq.com:port_number -d database_name -u username -p password -o /path/on/my/local/computer`
+    > Deprovision the old database for this app, making sure that the mongodump in Step #2 completed successfully.
 
-`$ heroku addons:remove mongolab:starter`
-Provision a new database for this app.
+*   `$ heroku addons:remove mongolab:starter`
+    > Provision a new database for this app.
 
-`$ heroku addons:add mongolab:starter`
-Make available the newly updated MONGOLAB_URI from your Heroku configs.
+*   `$ heroku addons:add mongolab:starter`
+    > Make available the newly updated MONGOLAB_URI from your Heroku configs.
 
-Run a mongorestore of your locally backed up database to your new database (updating your connection info.)
-
-`$ mongorestore -h hostname.mongolab.com:port_number -d database_name -u username -p password /path/on/my/local/computer`
-Return from maintenance mode.
-
-`$ heroku maintenance:off`
+*   Run a mongorestore of your locally backed up database to your new database (updating your connection info.)
+*   `$ mongorestore -h hostname.mongolab.com:port_number -d database_name -u username -p password /path/on/my/local/computer`
+*   `$ heroku maintenance:off`
 
 ------------------
 
