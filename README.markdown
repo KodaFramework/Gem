@@ -319,6 +319,7 @@ Loading from AJAX
 		"displayfield" : "title"
 	}
 }
+```
 
 ### Collections
 
@@ -327,7 +328,7 @@ Loading from AJAX
 
 #### Usage
 
-```javascript
+```json
 {
 	"id" : "homepage",
 	"title" : "Select homepage",
