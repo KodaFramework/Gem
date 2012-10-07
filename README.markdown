@@ -273,7 +273,7 @@ Or use a timestamp
 
 ## Data Types
 
-### Available data types
+### Single field data types
 
 * input-hidden
 * input-color
@@ -304,6 +304,22 @@ Or use a timestamp
 }
 ```
 
+Loading from AJAX
+
+```json
+{
+	"id" : "name",
+	"title" : "Title",
+	"description" : "Title of page",
+	"control" : "input-text",
+	"properties" : "required  placeholder='type a page title'",
+	"defaultValue" : "",
+	"ajax" : {
+		"url" : "/content/pages/pageone",
+		"displayfield" : "title"
+	}
+}
+
 ### Collections
 
 * collection
@@ -320,8 +336,9 @@ Or use a timestamp
 	"defaultValue" : "",
 	"values" : "value1,value2,value3,value4"
 }
+```
 
-###  Loading data into controls from Ajax (lists)
+Loading from AJAX
 
 ```json
 {
@@ -334,23 +351,6 @@ Or use a timestamp
 		"url" : "/content/mycollection",
 		"displayfield" : "title",
 		"valuefield" : "href"
-	}
-}
-```
-
-###  Loading data into controls from Ajax (single values)
-
-```json
-{
-	"id" : "name",
-	"title" : "Title",
-	"description" : "Title of page",
-	"control" : "input-text",
-	"properties" : "required  placeholder='type a page title'",
-	"defaultValue" : "",
-	"ajax" : {
-		"url" : "/content/pages/pageone",
-		"displayfield" : "title"
 	}
 }
 ```
